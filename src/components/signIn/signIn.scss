@@ -1,7 +1,16 @@
 .signin {
-    width: 30vw;
+    width: 450px;
     display: flex;
     flex-direction: column;
   }
 
   
+a {
+  cursor: pointer;
+}
+
+.custom-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

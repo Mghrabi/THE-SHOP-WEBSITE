@@ -1,5 +1,6 @@
 .custom-button {
     min-width: 165px;
+    margin-top: 50px;
     width: auto;
     height: 50px;
     letter-spacing: 0.5px;
@@ -13,10 +14,25 @@
     font-weight: bolder;
     border: none;
     cursor: pointer;
+    transition: color 0.2s;
   
     &:hover {
       background-color: white;
       color: black;
       border: 1px solid black;
+    }
+  }
+
+  @mixin forGoogle {
+    color: black;
+    background: #fff;
+  }
+
+  #google {
+    background:#4285F4;
+    color: #fff;
+
+    &:hover{
+      @include forGoogle()
     }
   }
