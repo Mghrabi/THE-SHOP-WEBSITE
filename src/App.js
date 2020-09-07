@@ -6,6 +6,7 @@ import ShopPage from './pages/ShopPage/ShopPage.js';
 import Header from './components/header/header.js';
 import SignInAndUp from './pages/sign_in_and_up/signInAndUp.js';
 import { auth } from './firebase.js';
+import { createUserProfileDoc } from './firebase';
 
 const HatPage = () => {
   return (
@@ -27,10 +28,13 @@ class App extends React.Component {
 
   componentDidMount(){
     this.unSubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      createUserProfileDoc(user);
       this.setState({currentUser: user});
-      console.log(this.state.currentUser);
+      console.log(this.state);
     })
   }
+
+
 
   componentWillUnmount(){
     this.unSubscribeFromAuth();
