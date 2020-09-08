@@ -13,7 +13,7 @@ class ShopPage extends React.Component {
 
     render() {
         const {SHOP_DATA} = this.state;
-        console.log(SHOP_DATA)
+        // console.log(SHOP_DATA)
         return (
             <div>
                 {SHOP_DATA.map( ({id,...otherProps}) => {
