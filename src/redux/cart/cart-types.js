@@ -1,0 +1,6 @@
+const CART_TYPES = {
+    TOGGLE_CART_WINDOW: 'TOGGLE_CART_WINDOW',
+
+}
+
+export default CART_TYPES;

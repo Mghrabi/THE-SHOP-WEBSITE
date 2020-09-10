@@ -1,0 +1,26 @@
+.cart-drop-down {
+    height: 350px;
+    width: 240px;
+    // background:rgb(214, 214, 214);
+    background: #fff;
+    margin-top: 100px;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    display: flex;
+    z-index: 10;
+    border: 1.5px solid black;
+    justify-content: center;
+    
+
+
+    .custom-button {
+        // margin: auto auto;
+        width: 90%;      
+        margin-top: auto;
+        margin-bottom: 10px;
+        font-size: 10px;
+    }
+    
+}
+

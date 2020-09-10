@@ -1,10 +1,11 @@
 import React from 'react';
 // import 'node-sass';
 import HomePage from './pages/homepage/HomePage.js';
-import {Route, Link, Switch} from 'react-router-dom';
+import {Route, Link, Switch, Redirect} from 'react-router-dom';
 import ShopPage from './pages/ShopPage/ShopPage.js';
 import Header from './components/header/header.js';
 import { setCurrentUser } from './redux/user/user-action';
+
 
 import SignInAndUp from './pages/sign_in_and_up/signInAndUp.js';
 import { auth } from './firebase.js';
@@ -29,7 +30,6 @@ class App extends React.Component {
     const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 
-
       if (userAuth) {
        const userRef = await createUserProfileDoc(userAuth);
 
@@ -38,15 +38,12 @@ class App extends React.Component {
               id: snapShot.id,
               ...snapShot.data()
           });
-
           // console.log(this.state); // 1
         });
       }
-
       else{
       setCurrentUser(userAuth);
       }
-
       // console.log(this.state); // 2
     });
   }
@@ -64,7 +61,14 @@ class App extends React.Component {
       <Switch>
         <Route exact path='/' component={HomePage}/> 
         <Route exact path='/shop' component={ShopPage}/>
-        <Route exact path='/signin' component={SignInAndUp}/>
+        <Route exact path='/signin' render={() => {
+          return(
+            this.props.userExist?
+            <Redirect to='/'/>
+            :
+            <SignInAndUp/>
+          )
+        }}/>
       </Switch>
     </div>
   );
@@ -73,9 +77,12 @@ class App extends React.Component {
   
 }
 
+const mapStateToProps = ({user:{currentUser}}) => ({
+  userExist: currentUser
+})
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user))
 })
 
-export default connect(null,mapDispatchToProps )(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
