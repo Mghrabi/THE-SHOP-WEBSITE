@@ -20,6 +20,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+
   
       .option {
         padding: 10px 15px;
@@ -32,3 +33,17 @@
      color : grey;
      font-weight: bolder;
  }
+
+ .bag-container {
+  position: relative;
+  cursor: pointer;
+
+  .count {
+    position: absolute;
+    top: 16px;
+    right: -4px;
+    z-index: -1;
+  }
+ }
+
+ 

@@ -6,14 +6,21 @@ import { ReactComponent as Bag} from '../../assets/shop-bag.svg';
 import { auth } from '../../firebase.js';
 import { connect } from 'react-redux';
 import CartDropDown from '../cartDropDown/cartDropDown.js';
-
 import { toggleCartWindow } from '../../redux/cart/cart-action';
 
+import { createStructuredSelector } from 'reselect';
+
+import { 
+  selectCountItems,
+  selectHidden,
+ } from '../../redux/cart/cart-selector';
+
+ import { selectCurrentUser } from '../../redux/user/user-selector';
 
 
-const Header = ({ currentUser, hidden, toggleCartWindow }) => {
-      console.log(hidden);
-      console.log(currentUser);
+
+
+const Header = ({ currentUser, hidden, toggleCartWindow, count}) => {
       return (
       <div className='header'>
         <Link className='logo-container' to='/'>
@@ -35,23 +42,22 @@ const Header = ({ currentUser, hidden, toggleCartWindow }) => {
               <div onClick={()=> auth.signOut()}>SIGN IN</div>
             </Link>
           }
-          <div >
+          <div className='bag-container'>
             <Bag onClick={toggleCartWindow} className='option'/>
+            <div className='count'>{count}</div>
           </div>
         </div>
-        {hidden?
-        null
-        :
-        <CartDropDown />
+        {hidden? null :<CartDropDown/>
         }
         
       </div>)
 }
   
 
-const mapStateToProps = ({user:{currentUser},cart:{hidden}}) => ({
-  currentUser: currentUser,
-  hidden:hidden
+const mapStateToProps = state => createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden:selectHidden,
+  count: selectCountItems
 })
 
 const mapDispatchToProps = dispatch => ({
