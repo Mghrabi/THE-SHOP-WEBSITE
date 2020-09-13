@@ -1,0 +1,27 @@
+.checkout-container {
+    width: 70%;
+    height: 50%;
+    margin: auto;
+    margin-top: 150px;
+
+    .checkout-header {
+        display: flex;
+        padding-bottom: 10px;
+        border-bottom: 1px solid black;
+        justify-content: center;
+        // flex-direction: row;
+        // justify-content: space-around;
+
+
+        .column {
+        width: 23%;
+        }
+
+        .remove-column {
+            width: 8%;
+        }
+
+    }
+
+   
+}

@@ -5,7 +5,7 @@ import {Route, Link, Switch, Redirect} from 'react-router-dom';
 import ShopPage from './pages/ShopPage/ShopPage.js';
 import Header from './components/header/header.js';
 import { setCurrentUser } from './redux/user/user-action';
-import CheckOutPage from './pages/checkoutPage/checkoutPage.js';
+import CheckoutPage from './pages/checkoutPage/checkoutPage.js';
 
 
 import SignInAndUp from './pages/sign_in_and_up/signInAndUp.js';
@@ -70,7 +70,7 @@ class App extends React.Component {
             <SignInAndUp/>
           )
         }}/>
-        <Route exact path='/checkout' component={CheckOutPage}/>
+        <Route exact path='/checkout' component={CheckoutPage}/>
       </Switch>
     </div>
   );

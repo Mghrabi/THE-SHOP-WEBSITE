@@ -1,0 +1,38 @@
+.checkout-item {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+    align-items: center;
+    margin-top: 10px;
+    padding-bottom: 5px;
+
+    .column {
+     width: 23%;
+    //  text-align: center;
+
+     img {
+         width: 85%;
+         height: auto;
+     }
+
+     .arrow {
+        margin: 0 8px;
+        cursor: pointer;
+        color: green;
+     }
+
+     &.arrows {
+         display: flex;
+         flex-direction: row;
+     }
+
+    }
+
+
+    .remove-column {
+        width: 8%;
+        padding-left: 15px;
+        cursor: pointer;
+        color: red;
+    }    
+}

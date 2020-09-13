@@ -4,11 +4,12 @@ import './cartDropDown.scss';
 import { toggleCartWindow } from '../../redux/cart/cart-action.js';
 import WindowItem from '../windowItem/windowItem.js';
 
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { selectCartItems } from '../../redux/cart/cart-selector';
 
-const CartDropDown = ({cartItems}) => {
+const CartDropDown = ({cartItems, history, toggleCartWindow}) => {
     return (
         <div className='cart-drop-down'>
             {cartItems.length?
@@ -22,7 +23,10 @@ const CartDropDown = ({cartItems}) => {
             <div className='message'>no selected items</div>
             }
             
-            <CustomButton type='button'>CHECKOUT</CustomButton>
+            <CustomButton onClick={() => {
+                history.push('/checkout');
+                toggleCartWindow();
+                }} type='button'>CHECKOUT</CustomButton>
         </div>
     )
 }
@@ -32,5 +36,7 @@ const mapStateToProps = state => ({
     cartItems: selectCartItems(state)
 })
 
-export default connect(mapStateToProps)(CartDropDown);
+
+
+export default withRouter(connect(mapStateToProps, {toggleCartWindow})(CartDropDown));
 
