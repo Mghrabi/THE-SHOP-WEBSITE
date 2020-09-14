@@ -1,8 +1,8 @@
 const { reduceOrRemoveItem } = require("../cart/cart-utiles")
 
 const intialState = {
-    shopData:[
-        {
+    shopData:{
+        hats:{
           id: 1,
           title: 'Hats',
           routeName: 'hats',
@@ -63,7 +63,7 @@ const intialState = {
             }
           ]
         },
-        {
+        sneakers:{
           id: 2,
           title: 'Sneakers',
           routeName: 'sneakers',
@@ -118,7 +118,7 @@ const intialState = {
             }
           ]
         },
-        {
+        jackets:{
           id: 3,
           title: 'Jackets',
           routeName: 'jackets',
@@ -155,7 +155,7 @@ const intialState = {
             }
           ]
         },
-        {
+        womens:{
           id: 4,
           title: 'Womens',
           routeName: 'womens',
@@ -204,7 +204,7 @@ const intialState = {
             }
           ]
         },
-        {
+        mens:{
           id: 5,
           title: 'Mens',
           routeName: 'mens',
@@ -247,8 +247,9 @@ const intialState = {
             }
           ]
         }
-      ]
-}
+      
+    }
+  }
 
 const shopReducer = (state=intialState, action) => {
     switch(action.type){

@@ -14,6 +14,7 @@ import { createUserProfileDoc } from './firebase';
 import { connect } from 'react-redux';
 
 
+
 const HatPage = () => {
   return (
     <div>
@@ -61,7 +62,7 @@ class App extends React.Component {
       <Header/>
       <Switch>
         <Route exact path='/' component={HomePage}/> 
-        <Route exact path='/shop' component={ShopPage}/>
+        <Route path='/shop' component={ShopPage}/>
         <Route exact path='/signin' render={() => {
           return(
             this.props.userExist?
