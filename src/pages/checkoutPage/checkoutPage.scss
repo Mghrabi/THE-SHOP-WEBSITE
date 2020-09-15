@@ -3,28 +3,36 @@
     height: 100%;
     position: relative;
     
-}
-
-#pay-button {
-    min-width: 100px;
-    padding: 0;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(11, 219, 247);
-    color: black;
-    border-radius: 5px;
-    font-size: 15px;
-    border: 2px solid rgb(11, 219, 247);
-    position: absolute;
-    right: -30px;
-    bottom: -100px;
-    outline: none;
-
-
-    &:hover {
-        border: 0;
-        background: rgb(3, 169, 190);
+    h1 {
+        width: 335px;
+        display: block;
+        margin-left: auto;
+        margin-right: 80px;
+        font-weight: 300;
+        font-size: 50px;
     }
+    
+    .checkout-container {
+    padding-bottom: 60px;
+    }
+
+    .message-test {
+        text-align: center;
+        width: 40%;
+        font-size: 20px;
+        margin-right: auto;
+        margin-left: auto;
+        color: red;
+    }
+
+    .stripe-buttonn {
+        margin-top: 30px;
+        // width: 100px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        // background: red;
+    }
+    
 }
+
