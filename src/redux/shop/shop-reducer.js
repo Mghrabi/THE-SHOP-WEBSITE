@@ -2,7 +2,8 @@ import { SHOP_TYPES } from './shop-types';
 
 const intialState = {
     shopData:null,
-    fetched:false
+    fetched:false,
+    errorMessage:''
   }
 
 const shopReducer = (state=intialState, action) => {
@@ -16,6 +17,12 @@ const shopReducer = (state=intialState, action) => {
         return {
           ...state,
           fetched: action.payload
+        }
+      case SHOP_TYPES.CHECK_FETCHED_ERROR:
+        return {
+          ...state,
+          fetched: false,
+          errorMessage:action.payload
         }
         default:
             return state

@@ -24,3 +24,8 @@ export const selectShopDataForPreview = createSelector(
         return null
     }
 )
+
+export const selectFetched = createSelector(
+    [selectShop],
+    shop => shop.fetched
+);

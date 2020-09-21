@@ -9,27 +9,18 @@ import { firestore, convertCollectionsToObj } from '../../firebase';
 import collectionsOverview from '../../components/collectionsOverview/collectionsOverview.js';
 
 import { connect } from 'react-redux';
-import { addingDataAsync, checkFetched } from '../../redux/shop/shop-actions';
+import { fetchingDataFromDatabase } from '../../redux/shop/shop-actions';
 
 class ShopPage extends React.Component {
 
     componentDidMount(){
         console.log('componentDidMount')
-       const { addingDataAsync, checkFetched } = this.props;
-       const collectionsRef = firestore.collection('collections');
-       collectionsRef.onSnapshot(async snapShot => {
-            const data = await convertCollectionsToObj(snapShot);
-            console.log(data);
-            
-            addingDataAsync(data);
-            if (data.hats){
-                checkFetched(true);
-            }
-       })
+        const { fetchingDataFromDatabase } = this.props;
+        fetchingDataFromDatabase();
+        
     }   
 
     render(){
-        console.log('rendered')
         const {match} = this.props;
         return (
                 <div className='shop-page'>
@@ -43,8 +34,7 @@ class ShopPage extends React.Component {
     
 
 const mapDispatchToProps = dispatch => ({
-    addingDataAsync:item => dispatch(addingDataAsync(item)),
-    checkFetched: value => dispatch(checkFetched(value))
+    fetchingDataFromDatabase: () => dispatch(fetchingDataFromDatabase())
 })
 
 
