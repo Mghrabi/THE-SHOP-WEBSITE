@@ -14,6 +14,9 @@ import { createUserProfileDoc } from './firebase';
 import { connect } from 'react-redux';
 
 
+import { selectCurrentUser } from './redux/user/user-selector';
+
+
 
 const HatPage = () => {
   return (
@@ -24,16 +27,16 @@ const HatPage = () => {
 }
 
 class App extends React.Component {
-
-
+  
   unSubscribeFromAuth = null;
 
   componentDidMount() {
+    console.log('didmount in app')
     const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 
       if (userAuth) {
-       const userRef = await createUserProfileDoc(userAuth);
+        const userRef = await createUserProfileDoc(userAuth);
 
         userRef.onSnapshot( snapShot => {
           setCurrentUser({
@@ -48,6 +51,9 @@ class App extends React.Component {
       }
       // console.log(this.state); // 2
     });
+
+
+
   }
 
 
@@ -57,6 +63,7 @@ class App extends React.Component {
   }
 
   render(){
+    console.log('app rendered')
     return (
     <div>
       <Header/>
@@ -64,8 +71,9 @@ class App extends React.Component {
         <Route exact path='/' component={HomePage}/> 
         <Route path='/shop' component={ShopPage}/>
         <Route exact path='/signin' render={() => {
+          const { userExist } = this.props
           return(
-            this.props.userExist?
+            userExist?
             <Redirect to='/'/>
             :
             <SignInAndUp/>
@@ -80,8 +88,8 @@ class App extends React.Component {
   
 }
 
-const mapStateToProps = ({user:{currentUser}}) => ({
-  userExist: currentUser
+const mapStateToProps = (state) => ({
+  userExist: selectCurrentUser(state),
 })
 
 const mapDispatchToProps = dispatch => ({

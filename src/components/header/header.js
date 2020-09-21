@@ -19,7 +19,6 @@ import {
 
 
 
-
 const Header = ({ currentUser, hidden, toggleCartWindow, count}) => {
       return (
       <div className='header'>

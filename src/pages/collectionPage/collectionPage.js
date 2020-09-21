@@ -8,26 +8,33 @@ import { selectCollection } from '../../redux/shop/shop-selector';
 
 
 
-const CollectionPage = ({ collection, collectionId }) => {
-    console.log('collectionId',collectionId);
-    console.log('collection',collection)
-    const { title, items } = collection;
-    return (
-        <div className='collection-page'>
-            <h1 className='title'>{title}</h1>
-            <div className='preview'>
-                {items.map(item => {
-                return <CollectionItem key={item.id} item={item}/>
-                })}
+const CollectionPage = ({ collection, fetched }) => {
+    if (fetched){
+        const { title, items } = collection;
+        return (
+            <div className='collection-page'>
+                <h1  className='title'>{title}</h1>
+                <div className='preview'>
+                    {items.map(item => {
+                    return <CollectionItem key={item.id} item={item}/>
+                    })}
+                </div>
             </div>
-        </div>
     )
+    }
+    else{
+        return(
+            <div style={{color:'orange',margin:'70px auto 0 auto',fontSize:'30px'}}>LOADING...</div>
+        )
+    }
+    
+    
 }
 
 
 const mapStateToProps = (state, ownProps) => ({
     collection: selectCollection(ownProps.match.params.collectionId)(state),
-    collectionId: ownProps.match.params.collectionId
+    fetched: state.shop.fetched
 })
 
 export default connect(mapStateToProps)(CollectionPage);

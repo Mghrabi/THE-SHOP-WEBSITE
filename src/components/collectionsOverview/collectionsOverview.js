@@ -8,18 +8,29 @@ import { selectShopDataForPreview } from '../../redux/shop/shop-selector';
 
 
 const CollectionsOverview = ({ shopData }) => {
-    console.log(shopData);
-    return (
-        <div>
-            {shopData.map( ({id,...otherProps}) => {
-                  return <CollectionPreview key={id} {...otherProps} />;
-            })}
-        </div>
-    )
+        if(shopData){
+            console.log('returned')
+            return(
+                <div>
+                {shopData.map( ({id,...otherProps}) => {
+                    return <CollectionPreview key={id} {...otherProps} />;
+                })}
+            </div>
+            )
+        }
+            else{
+                return(
+                    <div style={{color:'orange',margin:'70px auto 0 auto',fontSize:'30px'}}>LOADING...</div>
+                )
+            }
 }
 
 const mapStateToProps = createStructuredSelector({
     shopData: selectShopDataForPreview
 })
+
+// const mapStateToProps = ({shop:{shopData}}) => ({
+//     shopData: Object.keys(shopData).map(key => shopData[key])
+// })
 
 export default connect(mapStateToProps)(CollectionsOverview);
