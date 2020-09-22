@@ -87,12 +87,10 @@ export const convertCollectionsToObj = (collectionsSnap) => {
 
   const collectionsObject = collectionsArr.reduce((acc, obj) => {
     const title = obj.title.toLowerCase();
-    console.log(title);
     acc[title] = obj;
     return acc
   },{})
 
-  console.log(collectionsObject);
  return collectionsObject;
   
 }

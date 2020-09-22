@@ -4,19 +4,17 @@ import { Route } from 'react-router-dom';
 
 import CollectionsOverview from '../../components/collectionsOverview/collectionsOverview.js'
 import CollectionPage from '../../pages/collectionPage/collectionPage.js';
+import { startFetching } from '../../redux/shop/shop-actions';
 
-import { firestore, convertCollectionsToObj } from '../../firebase';
-import collectionsOverview from '../../components/collectionsOverview/collectionsOverview.js';
 
 import { connect } from 'react-redux';
-import { fetchingDataFromDatabase } from '../../redux/shop/shop-actions';
 
 class ShopPage extends React.Component {
 
     componentDidMount(){
         console.log('componentDidMount')
-        const { fetchingDataFromDatabase } = this.props;
-        fetchingDataFromDatabase();
+        const { startFetching } = this.props;
+        startFetching();
         
     }   
 
@@ -34,7 +32,7 @@ class ShopPage extends React.Component {
     
 
 const mapDispatchToProps = dispatch => ({
-    fetchingDataFromDatabase: () => dispatch(fetchingDataFromDatabase())
+    startFetching: () => dispatch(startFetching())
 })
 
 

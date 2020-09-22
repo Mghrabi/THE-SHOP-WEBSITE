@@ -1,6 +1,9 @@
 import { SHOP_TYPES } from './shop-types';
 import { firestore, convertCollectionsToObj } from '../../firebase';
 
+export const startFetching = () => ({
+    type:SHOP_TYPES.START_FETCHING
+});
 
 export const addingDataAsync = item => ({
     type:SHOP_TYPES.ADDING_SHOP_DATA_ASYNC,
@@ -18,21 +21,21 @@ export const checkFetchedError = error => ({
 })
 
 
-export const fetchingDataFromDatabase = () => {
-    return (dispatch) => {
-        const collectionsRef = firestore.collection('collections');
-        collectionsRef.get().then(async snapShot => {
-            const data = await convertCollectionsToObj(snapShot);
-            console.log(data);
+// export const fetchingDataFromDatabase = () => {
+//     return (dispatch) => {
+//         const collectionsRef = firestore.collection('collections');
+//         collectionsRef.get().then(async snapShot => {
+//             const data = await convertCollectionsToObj(snapShot);
+//             console.log(data);
             
-            dispatch(addingDataAsync(data));
-            if (data.hats){
-                dispatch(checkFetched(true));
-            }
-       })
-       .catch(error => {
-           dispatch(checkFetchedError(error));
-           alert('error accured');
-       })
-    }
-}
+//             dispatch(addingDataAsync(data));
+//             if (data.hats){
+//                 dispatch(checkFetched(true));
+//             }
+//        })
+//        .catch(error => {
+//            dispatch(checkFetchedError(error));
+//            alert('error accured');
+//        })
+//     }
+// }

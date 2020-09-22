@@ -31,8 +31,6 @@ const mapStateToProps = createStructuredSelector({
     fetched: selectFetched
 })
 
-// const mapStateToProps = ({shop:{shopData}}) => ({
-//     shopData: Object.keys(shopData).map(key => shopData[key])
-// })
+
 
 export default connect(mapStateToProps)(AddingLoading(CollectionsOverview));
