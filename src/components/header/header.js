@@ -6,7 +6,7 @@ import { ReactComponent as Bag} from '../../assets/shop-bag.svg';
 import { auth } from '../../firebase.js';
 import { connect } from 'react-redux';
 import CartDropDown from '../cartDropDown/cartDropDown.js';
-import { toggleCartWindow } from '../../redux/cart/cart-action';
+import { toggleCartWindow, cleanCartItems } from '../../redux/cart/cart-action';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -19,7 +19,7 @@ import {
 
 
 
-const Header = ({ currentUser, hidden, toggleCartWindow, count}) => {
+const Header = ({ currentUser, hidden, toggleCartWindow, count, cleanCartItems}) => {
       return (
       <div className='header'>
         <Link className='logo-container' to='/'>
@@ -34,11 +34,15 @@ const Header = ({ currentUser, hidden, toggleCartWindow, count}) => {
           </Link>
           { currentUser?
             <div className='option' to='/signin'>
-              <a onClick={()=> auth.signOut()}>SIGN OUT</a> 
+              <a onClick={()=> {
+                cleanCartItems();
+                auth.signOut()
+                }}>SIGN OUT</a> 
             </div>
             :
             <Link className='option' to='/signin'>
-              <div onClick={()=> auth.signOut()}>SIGN IN</div>
+              <div onClick={()=> {
+                }}>SIGN IN</div>
             </Link>
           }
           <div className='bag-container'>
@@ -60,7 +64,8 @@ const mapStateToProps = state => createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleCartWindow:() =>  dispatch(toggleCartWindow())
+  toggleCartWindow:() =>  dispatch(toggleCartWindow()),
+  cleanCartItems: () => dispatch(cleanCartItems())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

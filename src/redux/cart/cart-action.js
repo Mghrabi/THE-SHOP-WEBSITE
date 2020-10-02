@@ -18,3 +18,7 @@ export const reduceOrRemoveItem = item => ({
     type: CART_TYPES.REDUCE_OR_REMOVE_ITEM,
     payload: item
 })
+
+export const cleanCartItems = () => ({
+    type: CART_TYPES.CLEAN_CART_ITEMS
+})

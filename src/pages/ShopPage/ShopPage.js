@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; 
 import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 import CollectionsOverview from '../../components/collectionsOverview/collectionsOverview.js'
@@ -20,6 +21,7 @@ class ShopPage extends React.Component {
 
     render(){
         const {match} = this.props;
+        console.log('shopPage is rendered');
         return (
                 <div className='shop-page'>
                     <Route exact path={`${match.path}`} component={CollectionsOverview} />
@@ -38,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
 
 
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default withRouter(connect(null, mapDispatchToProps)(ShopPage));
